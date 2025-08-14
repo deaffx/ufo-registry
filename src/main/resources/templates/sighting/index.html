@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-br" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <title>OVNI Registry - Registros de Avistamentos</title>
+  </head>
+  <body>
+    <header class="navbar bg-base-300">
+      <div class="navbar-start">
+        <h1 class="text-xl font-bold text-primary">🛸 OVNI Registry</h1>
+      </div>
+    </header>
+
+    <div th:if="${message}" role="alert" class="alert alert-success mx-4 mt-4">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="stroke-current shrink-0 h-6 w-6"
+        fill="none"
+        viewBox="0 0 24 24"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+        />
+      </svg>
+      <span th:text="${message}"></span>
+    </div>
+
+    <div class="p-4">
+      <!-- Lista de Avistamentos -->
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div
+          th:each="sighting : ${sightings}"
+          class="card bg-base-100 shadow-lg border-l-4 border-primary"
+        >
+          <div class="card-body">
+            <!-- Header do Card -->
+            <div class="flex justify-between items-start mb-4">
+              <div class="flex gap-2">
+                <div
+                  class="badge badge-secondary"
+                  th:text="${sighting.shape ?: 'N/A'}"
+                >
+                  circular
+                </div>
+                <div
+                  th:if="${sighting.color}"
+                  class="badge badge-outline"
+                  th:text="${sighting.color}"
+                >
+                  branco
+                </div>
+              </div>
+              <div
+                class="text-sm opacity-70"
+                th:text="${sighting.sightingDate != null ? #temporals.format(sighting.sightingDate, 'dd/MM/yyyy') : 'Data não informada'}"
+              >
+                15/08/2025
+              </div>
+            </div>
+
+            <!-- Localização -->
+            <h3 class="card-title text-primary mb-3">
+              <span th:text="${sighting.location}">São Paulo, SP</span>
+            </h3>
+
+            <!-- Descrição -->
+            <p
+              class="text-sm mb-4 line-clamp-3"
+              th:text="${sighting.description ?: 'Sem descrição'}"
+            >
+              Descrição do avistamento...
+            </p>
+
+            <!-- Detalhes em Grid -->
+            <div
+              class="grid grid-cols-2 gap-3 text-xs bg-base-200 p-3 rounded-lg"
+            >
+              <div th:if="${sighting.durationMinutes}">
+                <div class="font-semibold">Duração:</div>
+                <div th:text="${sighting.durationMinutes + ' min'}">5 min</div>
+              </div>
+              <div th:if="${sighting.credibilityScore}">
+                <div class="font-semibold">Credibilidade:</div>
+                <div class="flex items-center gap-1">
+                  <span th:text="${sighting.credibilityScore + '/10'}"
+                    >8/10</span
+                  >
+                  <div class="w-full bg-base-300 rounded-full h-2">
+                    <div
+                      class="bg-primary h-2 rounded-full"
+                      th:style="'width: ' + ${sighting.credibilityScore * 10} + '%'"
+                    ></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ações -->
+            <div class="card-actions justify-end mt-4">
+              <form
+                th:action="'/sighting/delete/' + ${sighting.id}"
+                method="POST"
+                onsubmit="return confirm('Tem certeza que deseja excluir este avistamento?')"
+                class="inline"
+              >
+                <button class="btn btn-error btn-sm btn-outline">
+                  Excluir
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mensagem quando não há registros -->
+        <div
+          th:if="${#lists.isEmpty(sightings)}"
+          class="col-span-full text-center py-16"
+        >
+          <div class="mb-6">
+            <img
+              th:src="@{/images/et-bilu.png}"
+              alt="ET Bilu"
+              class="w-32 h-32 rounded-full object-cover mx-auto border-4 border-white"
+            />
+          </div>
+          <h3 class="text-2xl font-bold mb-4">Nenhum avistamento encontrado</h3>
+          <p class="text-base-content/60 mb-6 text-lg">
+            "Busquem conhecimento" - Bilu, ET
+          </p>
+          <a href="/sighting/form" class="btn btn-primary btn-lg">
+            <span class="text-xl">🛸</span> Novo Avistamento
+          </a>
+        </div>
+      </div>
+      <!-- Estatísticas (quando há registros) -->
+      <div th:if="${!#lists.isEmpty(sightings)}" class="mt-12 mb-8">
+        <div class="stats shadow w-full bg-base-100">
+          <div class="stat">
+            <div class="stat-figure text-primary">
+              <span class="text-2xl">🛸</span>
+            </div>
+            <div class="stat-title">Total de Avistamentos</div>
+            <div
+              class="stat-value text-primary"
+              th:text="${#lists.size(sightings)}"
+            >
+              0
+            </div>
+            <div class="stat-desc">Registros no sistema</div>
+          </div>
+        </div>
+      </div>
+      <div
+        th:if="${!#lists.isEmpty(sightings)}"
+        class="flex justify-center mt-8"
+      >
+        <a href="/sighting/form" class="btn btn-primary">
+          <span class="text-lg">🛸</span> Novo Avistamento
+        </a>
+      </div>
+    </div>
+  </body>
+</html>

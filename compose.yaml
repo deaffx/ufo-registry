@@ -1,0 +1,10 @@
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: ufo_registry_db
+    environment:
+      - 'POSTGRES_DB=uforegistry'
+      - 'POSTGRES_PASSWORD=uforegistry'
+      - 'POSTGRES_USER=uforegistry'
+    ports:
+      - '5432:5432'
