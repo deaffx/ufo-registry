@@ -28,7 +28,7 @@
             <form method="POST" class="space-y-4">
                 <!-- Localização -->
                 <div class="form-control flex flex-col">
-                    <label class="label">
+                    <label class="label mb-2">
                         <span class="label-text font-semibold">* Localização</span>
                     </label>
                     <input name="location" type="text" 
@@ -39,7 +39,7 @@
 
                 <!-- Descrição -->
                 <div class="form-control flex flex-col">
-                    <label class="label">
+                    <label class="label mb-2">
                         <span class="label-text font-semibold">Descrição do Avistamento</span>
                     </label>
                     <textarea name="description" 
@@ -52,7 +52,7 @@
                 <!-- Forma e Cor -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="form-control">
-                        <label class="label">
+                        <label class="label mb-2">
                             <span class="label-text font-semibold">Formato</span>
                         </label>
                         <select name="shape" class="select select-bordered">
@@ -66,7 +66,7 @@
                     </div>
 
                     <div class="form-control">
-                        <label class="label">
+                        <label class="label mb-2">
                             <span class="label-text font-semibold">Cor</span>
                         </label>
                         <input name="color" type="text" 
@@ -78,7 +78,7 @@
                 <!-- Data e Duração -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="form-control">
-                        <label class="label">
+                        <label class="label mb-2">
                             <span class="label-text font-semibold">Data</span>
                         </label>
                         <input name="sightingDate" type="date" min="1900-01-01" max="2100-12-31" class="input input-bordered" />
@@ -88,7 +88,7 @@
                     </div>
 
                     <div class="form-control">
-                        <label class="label">
+                        <label class="label mb-2">
                             <span class="label-text font-semibold">Duração (minutos)</span>
                         </label>
                         <input name="durationMinutes" type="number" 
@@ -100,7 +100,7 @@
 
                 <!-- Credibilidade -->
                 <div class="form-control flex flex-col">
-                    <label class="label">
+                    <label class="label mb-2">
                         <span class="label-text font-semibold">Nível de Credibilidade (1-10)</span>
                     </label>
                     <input name="credibilityScore" id="credibility-range" 

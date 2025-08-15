@@ -30,7 +30,7 @@ public class UfoSightingController {
     @PostMapping("/form")
     public String create(UfoSighting ufoSighting, RedirectAttributes redirect) {
         ufoSightingService.save(ufoSighting);
-        redirect.addFlashAttribute("message", "Avistamento registrado com sucesso!");
+        redirect.addFlashAttribute("message", "Avistamento de OVNI registrado com sucesso!");
         return "redirect:/sighting";
     }
 
@@ -54,7 +54,7 @@ public class UfoSightingController {
     @PostMapping("/delete/{id}")
     public String delete(@PathVariable Long id, RedirectAttributes redirect) {
         ufoSightingService.deleteById(id);
-        redirect.addFlashAttribute("message", "Avistamento removido com sucesso!");
+        redirect.addFlashAttribute("message", "Avistamento de OVNI removido com sucesso!");
         return "redirect:/sighting";
     }
 }
