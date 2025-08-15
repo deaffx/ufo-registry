@@ -1,134 +1,184 @@
 <!DOCTYPE html>
 <html lang="pt-br" data-theme="dark">
-<head>
-    <meta charset="UTF-8">
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5"
+      rel="stylesheet"
+      type="text/css"
+    />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css" rel="stylesheet" type="text/css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/daisyui@5/themes.css"
+      rel="stylesheet"
+      type="text/css"
+    />
     <title>OVNI Registry - Novo Avistamento</title>
-</head>
-<body>
-
-<header class="navbar bg-base-300">
-    <div class="navbar-start">
+  </head>
+  <body>
+    <header class="navbar bg-base-300">
+      <div class="navbar-start">
         <h1 class="text-xl font-bold text-primary">🛸 OVNI Registry</h1>
-    </div>
-    <div class="navbar-end">
-        <a href="/sighting" class="btn btn-ghost">Voltar</a>
-    </div>
-</header>
+      </div>
+    </header>
 
-<main class="container mx-auto p-6 max-w-2xl">
-    <div class="card bg-base-100 shadow-lg">
+    <main class="container mx-auto p-6 max-w-2xl">
+      <div class="card bg-base-100 shadow-lg">
         <div class="card-body">
-            <h2 class="card-title text-center text-2xl mb-6">
-                🛸 Registrar Novo Avistamento
-            </h2>
-            
-            <form method="POST" class="space-y-4">
+          <h2 class="card-title text-center text-2xl mb-6">
+            🛸 Registrar Novo Avistamento
+          </h2>
+
+          <form method="POST" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
+              <div class="space-y-4">
                 <!-- Localização -->
                 <div class="form-control flex flex-col">
-                    <label class="label mb-2">
-                        <span class="label-text font-semibold">* Localização</span>
-                    </label>
-                    <input name="location" type="text" 
-                           class="input input-bordered" 
-                           placeholder="Ex: São Paulo, SP"
-                           required />
+                  <label class="label mb-2">
+                    <span class="label-text font-semibold">* Localização</span>
+                  </label>
+                  <input
+                    name="location"
+                    type="text"
+                    class="input input-bordered"
+                    placeholder="Ex: São Paulo, SP"
+                    required
+                  />
                 </div>
 
                 <!-- Descrição -->
                 <div class="form-control flex flex-col">
-                    <label class="label mb-2">
-                        <span class="label-text font-semibold">Descrição do Avistamento</span>
-                    </label>
-                    <textarea name="description" 
-                              class="textarea textarea-bordered h-24" 
-                              placeholder="Descreva detalhadamente o que foi observado..."></textarea>
-                    <label class="label">
-                    </label>
+                  <label class="label mb-2">
+                    <span class="label-text font-semibold"
+                      >Descrição do Avistamento</span
+                    >
+                  </label>
+                  <textarea
+                    name="description"
+                    class="textarea textarea-bordered h-24"
+                    placeholder="Descreva detalhadamente o que foi observado..."
+                  ></textarea>
                 </div>
+              </div>
 
-                <!-- Forma e Cor -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="form-control">
-                        <label class="label mb-2">
-                            <span class="label-text font-semibold">Formato</span>
-                        </label>
-                        <select name="shape" class="select select-bordered">
-                            <option value="">Selecione o formato</option>
-                            <option value="circular">Circular</option>
-                            <option value="triangular">Triangular</option>
-                            <option value="oval">Oval</option>
-                            <option value="cilindrico">Cilíndrico</option>
-                            <option value="outro">Outro</option>
-                        </select>
-                    </div>
+              <!-- GIF -->
+              <div class="flex justify-center items-center">
+                <img
+                  src="/images/alien-dancing.gif"
+                  alt="UFO Animation"
+                  class="rounded-full w-48 h-48 object-cover"
+                />
+              </div>
+            </div>
 
-                    <div class="form-control">
-                        <label class="label mb-2">
-                            <span class="label-text font-semibold">Cor</span>
-                        </label>
-                        <input name="color" type="text" 
-                               class="input input-bordered" 
-                               placeholder="Ex: branco, prata, dourado" />
-                    </div>
-                </div>
+            <!-- Forma e Cor -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="form-control">
+                <label class="label mb-2">
+                  <span class="label-text font-semibold">Formato</span>
+                </label>
+                <select name="shape" class="select select-bordered">
+                  <option value="">Selecione o formato</option>
+                  <option value="circular">Circular</option>
+                  <option value="triangular">Triangular</option>
+                  <option value="oval">Oval</option>
+                  <option value="cilindrico">Cilíndrico</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
 
-                <!-- Data e Duração -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    <div class="form-control">
-                        <label class="label mb-2">
-                            <span class="label-text font-semibold">Data</span>
-                        </label>
-                        <input name="sightingDate" type="date" min="1900-01-01" max="2100-12-31" class="input input-bordered" />
-                        <label class="label">
-                            <span class="label-text-alt">Deixe vazio para usar data atual</span>
-                        </label>
-                    </div>
+              <div class="form-control">
+                <label class="label mb-2">
+                  <span class="label-text font-semibold">Cor</span>
+                </label>
+                <input
+                  name="color"
+                  type="text"
+                  class="input input-bordered"
+                  placeholder="Ex: branco, prata, dourado"
+                />
+              </div>
+            </div>
 
-                    <div class="form-control">
-                        <label class="label mb-2">
-                            <span class="label-text font-semibold">Duração (minutos)</span>
-                        </label>
-                        <input name="durationMinutes" type="number" 
-                               class="input input-bordered" 
-                               min="1" max="9999"
-                               placeholder="Ex: 5" />
-                    </div>
-                </div>
+            <!-- Data e Duração -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="form-control">
+                <label class="label mb-2">
+                  <span class="label-text font-semibold">Data</span>
+                </label>
+                <input
+                  name="sightingDate"
+                  type="date"
+                  min="1900-01-01"
+                  max="2100-12-31"
+                  class="input input-bordered"
+                />
+                <label class="label">
+                  <span class="label-text-alt"
+                    >Deixe vazio para usar data atual</span
+                  >
+                </label>
+              </div>
 
-                <!-- Credibilidade -->
-                <div class="form-control flex flex-col">
-                    <label class="label mb-2">
-                        <span class="label-text font-semibold">Nível de Credibilidade (1-10)</span>
-                    </label>
-                    <input name="credibilityScore" id="credibility-range" 
-                           type="range" min="1" max="10" value="5" 
-                           class="range range-primary" />
-                    <label class="label">
-                        <span id="credibility-label" class="label-text-alt">Credibilidade: 5/10</span>
-                    </label>
-                </div>
+              <div class="form-control">
+                <label class="label mb-2">
+                  <span class="label-text font-semibold"
+                    >Duração (minutos)</span
+                  >
+                </label>
+                <input
+                  name="durationMinutes"
+                  type="number"
+                  class="input input-bordered"
+                  min="1"
+                  max="9999"
+                  placeholder="Ex: 5"
+                />
+              </div>
+            </div>
 
-                <!-- Botões -->
-                <div class="flex justify-between pt-6">
-                    <a href="/sighting" class="btn btn-outline">Cancelar</a>
-                    <button type="submit" class="btn btn-primary">
-                        🛸 Registrar Avistamento
-                    </button>
-                </div>
-            </form>
+            <!-- Credibilidade -->
+            <div class="form-control flex flex-col">
+              <label class="label mb-2">
+                <span class="label-text font-semibold"
+                  >Nível de Credibilidade (1-10)</span
+                >
+              </label>
+              <input
+                name="credibilityScore"
+                id="credibility-range"
+                type="range"
+                min="1"
+                max="10"
+                value="5"
+                class="range range-primary"
+              />
+              <label class="label">
+                <span id="credibility-label" class="label-text-alt"
+                  >Credibilidade: 5/10</span
+                >
+              </label>
+            </div>
+
+            <!-- Botões -->
+            <div class="flex justify-between pt-6">
+              <a href="/sighting" class="btn btn-outline">Voltar</a>
+              <button type="submit" class="btn btn-primary">
+                🛸 Registrar Avistamento
+              </button>
+            </div>
+          </form>
         </div>
-    </div>
-</main>
+      </div>
+    </main>
 
-<script>
-    document.querySelector("#credibility-range").addEventListener("input", (e) => {
-        const label = document.querySelector("#credibility-label")
-        label.textContent = `Credibilidade: ${e.target.value}/10`
-    })
-</script>
-
-</body>
+    <script>
+      document
+        .querySelector("#credibility-range")
+        .addEventListener("input", (e) => {
+          const label = document.querySelector("#credibility-label");
+          label.textContent = `Credibilidade: ${e.target.value}/10`;
+        });
+    </script>
+  </body>
 </html>
