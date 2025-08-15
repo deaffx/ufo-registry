@@ -1,7 +1,7 @@
 package br.com.fiap.uforegistry.sighting;
 
 import org.springframework.stereotype.Service;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,7 +20,7 @@ public class UfoSightingService {
 
     public UfoSighting save(UfoSighting ufoSighting) {
         if (ufoSighting.getSightingDate() == null) {
-            ufoSighting.setSightingDate(LocalDate.now());
+            ufoSighting.setSightingDate(LocalDateTime.now());
         }
         return ufoSightingRepository.save(ufoSighting);
     }

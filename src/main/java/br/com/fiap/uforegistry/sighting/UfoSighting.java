@@ -10,7 +10,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Entity
 @Data
@@ -29,7 +29,7 @@ public class UfoSighting {
     private String description;
     private String shape;
     private String color;
-    private LocalDate sightingDate;
+    private LocalDateTime sightingDate;
     private Integer durationMinutes;
     private Integer credibilityScore;
     

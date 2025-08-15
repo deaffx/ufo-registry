@@ -36,8 +36,8 @@ public class UfoSightingController {
 
     @GetMapping("/search")
     public String search(@RequestParam(required = false) String location,
-                        @RequestParam(required = false) String shape,
-                        Model model) {
+            @RequestParam(required = false) String shape,
+            Model model) {
         if (location != null && !location.trim().isEmpty()) {
             model.addAttribute("sightings", ufoSightingService.findByLocation(location));
             model.addAttribute("searchTerm", location);
@@ -47,14 +47,15 @@ public class UfoSightingController {
         } else {
             model.addAttribute("sightings", ufoSightingService.getAllSightings());
         }
-        
+
         return "sighting/index";
     }
 
-    @PostMapping("/delete/{id}")
-    public String delete(@PathVariable Long id, RedirectAttributes redirect) {
+    @DeleteMapping("/{id}")
+    public String delete(@PathVariable("id") Long id, RedirectAttributes redirect) {
         ufoSightingService.deleteById(id);
         redirect.addFlashAttribute("message", "Avistamento de OVNI removido com sucesso!");
         return "redirect:/sighting";
     }
+
 }

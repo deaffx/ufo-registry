@@ -5,17 +5,16 @@ CREATE TABLE ufo_sighting
     description        TEXT,
     shape              VARCHAR(100),
     color              VARCHAR(100),
-    sighting_date      DATE,
+    sighting_date      TIMESTAMP,
     duration_minutes   INTEGER,
     credibility_score  INTEGER,
     CONSTRAINT pk_ufo_sighting PRIMARY KEY (id)
 );
 
--- Inserindo alguns dados de exemplo
 INSERT INTO ufo_sighting (location, description, shape, color, sighting_date, duration_minutes, credibility_score)
 VALUES 
-('São Paulo, SP', 'Objeto luminoso triangular movendo-se silenciosamente pelo céu noturno', 'triangular', 'branco', '2024-12-15', 5, 8),
-('Varginha, MG', 'Disco voador metálico pousou em campo próximo à cidade', 'circular', 'prata', '2025-05-20', 15, 9),
-('Campos do Jordão, SP', 'Luzes piscantes em formação V no céu', 'oval', 'vermelho', '2025-07-30', 8, 7),
-('Brasília, DF', 'Objeto cilíndrico brilhante desapareceu instantaneamente', 'cilindrico', 'dourado', '2025-08-12', 3, 6),
-('Rio de Janeiro, RJ', 'Múltiplas luzes em movimento coordenado sobre a Baía de Guanabara', 'outro', 'azul', '2025-02-25', 12, 8);
+('São Paulo, SP', 'Objeto luminoso triangular movendo-se silenciosamente pelo céu noturno', 'triangular', 'branco', '2024-12-15 22:30:00', 5, 8),
+('Varginha, MG', 'Disco voador metálico pousou em campo próximo à cidade', 'circular', 'prata', '2025-05-20 03:15:00', 15, 9),
+('Campos do Jordão, SP', 'Luzes piscantes em formação V no céu', 'oval', 'vermelho', '2025-07-30 01:45:00', 8, 7),
+('Brasília, DF', 'Objeto cilíndrico brilhante desapareceu instantaneamente', 'cilindrico', 'dourado', '2025-08-12 18:05:00', 3, 6),
+('Rio de Janeiro, RJ', 'Múltiplas luzes em movimento coordenado sobre a Baía de Guanabara', 'outro', 'azul', '2025-02-25 20:20:00', 12, 8);
